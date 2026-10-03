@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { CATEGORIES, CATEGORY_IMAGES, PRODUCTS, type Seller } from "@/lib/kala-data";
+import { CATEGORIES, CATEGORY_IMAGES, HERO_IMAGES, PRODUCTS, type Seller } from "@/lib/kala-data";
 import { SellerOnboarding, BuyerOnboarding } from "@/components/kala/Onboarding";
 import { BusinessCard, Logo } from "@/components/kala/BusinessCard";
 import { SellersDirectory, SupportersDirectory } from "@/components/kala/Directories";
@@ -47,8 +47,8 @@ function Index() {
           </div>
         </div>
         <div className="grid grid-cols-2 gap-4">
-          <img src={CATEGORY_IMAGES["Home Décor"]} alt="Home décor craft" className="h-72 w-full rounded-3xl object-cover shadow-warm" />
-          <img src={CATEGORY_IMAGES["Gift Hampers"]} alt="Gift hamper" className="mt-12 h-72 w-full rounded-3xl object-cover shadow-warm" />
+          <img src={HERO_IMAGES[0]} alt="Handmade craft" className="h-72 w-full rounded-3xl object-cover shadow-warm" />
+          <img src={HERO_IMAGES[1]} alt="Artisan at work" className="mt-12 h-72 w-full rounded-3xl object-cover shadow-warm" />
         </div>
       </section>
 
@@ -56,17 +56,13 @@ function Index() {
         <p className="eyebrow">Categories</p>
         <h2 className="font-display text-4xl mt-2 mb-8">Browse by craft</h2>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
-          {CATEGORIES.filter((c) => c !== "Home Décor" && c !== "Gift Hampers").concat(["Gift Hampers", "Home Décor"]).map((c, i) =>
-            i < 7 ? (
-              <div key={c} className="group relative h-40 overflow-hidden rounded-2xl">
-                <img src={CATEGORY_IMAGES[c]} alt={c} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-overlay" />
-                <span className="absolute bottom-3 left-3 font-medium text-primary-foreground">{c}</span>
-              </div>
-            ) : (
-              <div key={c} className="grid h-40 place-items-center rounded-2xl border border-dashed text-sm text-muted-foreground">{c} — see above</div>
-            ),
-          )}
+          {CATEGORIES.map((c) => (
+            <div key={c} className="group relative h-40 overflow-hidden rounded-2xl">
+              <img src={CATEGORY_IMAGES[c]} alt={c} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-overlay" />
+              <span className="absolute bottom-3 left-3 font-medium text-primary-foreground">{c}</span>
+            </div>
+          ))}
         </div>
       </section>
 
