@@ -20,7 +20,7 @@ export const Route = createFileRoute("/admin")({
   component: Admin,
 });
 
-const inr = (n: number) => "₹" + Math.round(n).toLocaleString("en-IN");
+const inr = (n: number) => (n < 0 ? "−₹" : "₹") + Math.abs(Math.round(n)).toLocaleString("en-IN");
 
 const WEEKLY = [
   { w: "W1", orders: 182 }, { w: "W2", orders: 214 }, { w: "W3", orders: 241 }, { w: "W4", orders: 268 },
