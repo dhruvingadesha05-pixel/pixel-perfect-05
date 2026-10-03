@@ -27,7 +27,7 @@ const buyerSchema = z.object({
   categories: z.array(z.enum(CATEGORIES)).min(1, "Pick at least one category"),
 });
 
-const Err = ({ m }: { m?: string }) => (m ? <p className="text-xs text-destructive mt-1">{m}</p> : null);
+const Err = ({ m }: { m?: string | undefined }) => (m ? <p className="text-xs text-destructive mt-1">{m}</p> : null);
 
 export function SellerOnboarding({ open, onOpenChange, onCreated }: {
   open: boolean; onOpenChange: (o: boolean) => void; onCreated: (s: Seller) => void;
@@ -64,8 +64,8 @@ export function SellerOnboarding({ open, onOpenChange, onCreated }: {
         </DialogHeader>
         <form onSubmit={onSubmit} className="grid gap-4" noValidate>
           <div className="grid sm:grid-cols-2 gap-4">
-            <div><Label>Full Name</Label><Input value={f.name} onChange={set("name")} /><Err m={errs.name} /></div>
-            <div><Label>Studio / Brand Name</Label><Input value={f.studio} onChange={set("studio")} /><Err m={errs.studio} /></div>
+            <div><Label>Full Name</Label><Input value={f.name} onChange={set("name")} /><Err m={errs["name"]} /></div>
+            <div><Label>Studio / Brand Name</Label><Input value={f.studio} onChange={set("studio")} /><Err m={errs["studio"]} /></div>
           </div>
           <div>
             <Label>Category</Label>
@@ -73,14 +73,14 @@ export function SellerOnboarding({ open, onOpenChange, onCreated }: {
               <SelectTrigger><SelectValue placeholder="Choose your craft" /></SelectTrigger>
               <SelectContent>{CATEGORIES.map((c) => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent>
             </Select>
-            <Err m={errs.category} />
+            <Err m={errs["category"]} />
           </div>
-          <div><Label>Location / Area & City</Label><Input placeholder="Vesu, Surat" value={f.location} onChange={set("location")} /><Err m={errs.location} /></div>
+          <div><Label>Location / Area & City</Label><Input placeholder="Vesu, Surat" value={f.location} onChange={set("location")} /><Err m={errs["location"]} /></div>
           <div className="grid sm:grid-cols-2 gap-4">
-            <div><Label>Phone Number</Label><Input inputMode="tel" placeholder="98765 43210" value={f.phone} onChange={set("phone")} /><Err m={errs.phone} /></div>
-            <div><Label>UPI ID</Label><Input placeholder="name@okaxis" value={f.upi} onChange={set("upi")} /><Err m={errs.upi} /></div>
+            <div><Label>Phone Number</Label><Input inputMode="tel" placeholder="98765 43210" value={f.phone} onChange={set("phone")} /><Err m={errs["phone"]} /></div>
+            <div><Label>UPI ID</Label><Input placeholder="name@okaxis" value={f.upi} onChange={set("upi")} /><Err m={errs["upi"]} /></div>
           </div>
-          <div><Label>Short Bio / Story</Label><Textarea rows={3} value={f.bio} onChange={set("bio")} /><Err m={errs.bio} /></div>
+          <div><Label>Short Bio / Story</Label><Textarea rows={3} value={f.bio} onChange={set("bio")} /><Err m={errs["bio"]} /></div>
           <Button type="submit" size="lg">Create my studio</Button>
         </form>
       </DialogContent>
@@ -121,10 +121,10 @@ export function BuyerOnboarding({ open, onOpenChange }: { open: boolean; onOpenC
           <DialogDescription>Support women makers near you.</DialogDescription>
         </DialogHeader>
         <form onSubmit={onSubmit} className="grid gap-4" noValidate>
-          <div><Label>Full Name</Label><Input value={f.name} onChange={(e) => setF({ ...f, name: e.target.value })} /><Err m={errs.name} /></div>
+          <div><Label>Full Name</Label><Input value={f.name} onChange={(e) => setF({ ...f, name: e.target.value })} /><Err m={errs["name"]} /></div>
           <div className="grid sm:grid-cols-2 gap-4">
-            <div><Label>City</Label><Input value={f.city} onChange={(e) => setF({ ...f, city: e.target.value })} /><Err m={errs.city} /></div>
-            <div><Label>Delivery Pincode</Label><Input inputMode="numeric" maxLength={6} value={f.pincode} onChange={(e) => setF({ ...f, pincode: e.target.value })} /><Err m={errs.pincode} /></div>
+            <div><Label>City</Label><Input value={f.city} onChange={(e) => setF({ ...f, city: e.target.value })} /><Err m={errs["city"]} /></div>
+            <div><Label>Delivery Pincode</Label><Input inputMode="numeric" maxLength={6} value={f.pincode} onChange={(e) => setF({ ...f, pincode: e.target.value })} /><Err m={errs["pincode"]} /></div>
           </div>
           <div>
             <Label>Preferred Categories</Label>
@@ -135,7 +135,7 @@ export function BuyerOnboarding({ open, onOpenChange }: { open: boolean; onOpenC
                 </label>
               ))}
             </div>
-            <Err m={errs.categories} />
+            <Err m={errs["categories"]} />
           </div>
           <Button type="submit" size="lg">Become a supporter</Button>
         </form>

@@ -14,7 +14,7 @@ const IMG = [
   "1610701596007-11502861dcfa", "1565193566173-7a0ee3dbe261", "1586495777744-4413f21062fa",
 ].map(u);
 
-export const HERO_IMAGES = [IMG[23], u("1600166898405-da9535204843")];
+export const HERO_IMAGES = [IMG[23]!, u("1600166898405-da9535204843")];
 
 export const CATEGORIES = [
   "Nail Art", "Crochet", "Gift Hampers", "Candles", "Handmade Jewelry",
@@ -28,14 +28,14 @@ export const CATEGORY_IMAGES: Record<Category, string> = Object.fromEntries(
 
 export type Product = { id: string; name: string; price: number; category: Category; maker: string; image: string };
 export const PRODUCTS: Product[] = [
-  { id: "p1", name: "Press-on Mehndi Nails", price: 649, category: "Nail Art", maker: "Glossy by Riya", image: IMG[9] },
-  { id: "p2", name: "Crochet Tulip Bouquet", price: 899, category: "Crochet", maker: "Loops & Love", image: IMG[10] },
-  { id: "p3", name: "Diwali Festive Hamper", price: 1499, category: "Gift Hampers", maker: "Tokri Tales", image: IMG[11] },
-  { id: "p4", name: "Sandalwood Soy Candle", price: 450, category: "Candles", maker: "Diya Studio", image: IMG[12] },
-  { id: "p5", name: "Oxidised Jhumka Pair", price: 399, category: "Handmade Jewelry", maker: "Chandni Crafts", image: IMG[13] },
-  { id: "p6", name: "Hand-painted Denim Jacket", price: 2199, category: "Customized Clothes", maker: "Rang Rasiya", image: IMG[14] },
-  { id: "p7", name: "Ocean Resin Coaster Set", price: 1199, category: "Resin Art", maker: "Neel Resin Co.", image: IMG[15] },
-  { id: "p8", name: "Chikankari Kurta Set", price: 3499, category: "Bespoke Apparel", maker: "Sui Dhaaga", image: IMG[16] },
+  { id: "p1", name: "Press-on Mehndi Nails", price: 649, category: "Nail Art", maker: "Glossy by Riya", image: IMG[9]! },
+  { id: "p2", name: "Crochet Tulip Bouquet", price: 899, category: "Crochet", maker: "Loops & Love", image: IMG[10]! },
+  { id: "p3", name: "Diwali Festive Hamper", price: 1499, category: "Gift Hampers", maker: "Tokri Tales", image: IMG[11]! },
+  { id: "p4", name: "Sandalwood Soy Candle", price: 450, category: "Candles", maker: "Diya Studio", image: IMG[12]! },
+  { id: "p5", name: "Oxidised Jhumka Pair", price: 399, category: "Handmade Jewelry", maker: "Chandni Crafts", image: IMG[13]! },
+  { id: "p6", name: "Hand-painted Denim Jacket", price: 2199, category: "Customized Clothes", maker: "Rang Rasiya", image: IMG[14]! },
+  { id: "p7", name: "Ocean Resin Coaster Set", price: 1199, category: "Resin Art", maker: "Neel Resin Co.", image: IMG[15]! },
+  { id: "p8", name: "Chikankari Kurta Set", price: 3499, category: "Bespoke Apparel", maker: "Sui Dhaaga", image: IMG[16]! },
 ];
 
 export type Seller = {
@@ -49,7 +49,7 @@ export type Buyer = {
 
 const sb = (i: number, name: string, studio: string, category: Category, location: string, bio: string): Seller => ({
   id: `seed-s${i}`, name, studio, category, location, phone: "", upi: "", bio,
-  badge: "Verified Local Maker", image: IMG[17 + i], isUserAdded: false, createdAt: 0,
+  badge: "Verified Local Maker", image: IMG[17 + i]!, isUserAdded: false, createdAt: 0,
 });
 export const SEED_SELLERS: Seller[] = [
   sb(0, "Riya Desai", "Glossy by Riya", "Nail Art", "Vesu, Surat", "Bridal nail art inspired by mehndi patterns."),
